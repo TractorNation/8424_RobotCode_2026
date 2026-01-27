@@ -107,7 +107,7 @@ public final class Constants {
    * {@link RobotContainer#configureButtonBindings()}.
    * Change this to match your current driver or development environment.
    */
-  public static final Driver currentDriver = Driver.MACBOOK;
+  public static final Driver currentDriver = Driver.PROGRAMMING;
 
   /**
    * Driver control scheme options.
@@ -131,7 +131,7 @@ public final class Constants {
    * This is used to select different constants (e.g., gear ratios, masses) for
    * different robot builds (competition bot vs. prototype bot).
    */
-  public static final RobotType currentRobot = RobotType.COMPBOT;
+  public static final RobotType currentRobot = RobotType.PROTOBOT;
 
   /**
    * Robot type options for different hardware configurations.

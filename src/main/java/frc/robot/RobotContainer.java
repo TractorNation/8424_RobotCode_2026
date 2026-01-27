@@ -252,11 +252,13 @@ public class RobotContainer {
         drive.setDefaultCommand(
             DriveCommands.joystickDrive(
                 drive,
-                () -> programmingController.getLeftY(),
-                () -> programmingController.getLeftX(),
+                () -> -programmingController.getLeftY(),
+                () -> -programmingController.getLeftX(),
                 () -> -programmingController.getRightX(),
                 1,
                 programmingController.leftBumper()));
+
+        programmingController.start().onTrue(Commands.runOnce(robotState::zeroHeading));
 
         break;
 
