@@ -75,6 +75,7 @@ public class RobotContainer {
 
   // Subsystems
   private final DriveSubsystem drive;
+  private final ShooterSubsystem shooter;
 
   @SuppressWarnings("unused")
   // Vision does not have any direct commands, so it is "unused" in this file
