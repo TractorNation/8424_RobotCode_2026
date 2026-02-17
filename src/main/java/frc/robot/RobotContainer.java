@@ -16,6 +16,7 @@ import frc.robot.subsystems.drive.GyroIOPigeon2;
 import frc.robot.subsystems.drive.ModuleIO;
 import frc.robot.subsystems.drive.ModuleIOSim;
 import frc.robot.subsystems.drive.ModuleIOTalonFX;
+import frc.robot.subsystems.shooter.ShooterSubsystem;
 import frc.robot.subsystems.vision.VisionConstants;
 
 import frc.robot.subsystems.vision.VisionIO;
@@ -134,6 +135,8 @@ public class RobotContainer {
 
         vision = new VisionSubsystem(
             new VisionIOLimelight("limelight"));
+
+        shooter = new ShooterSubsystem();
         break;
 
       // Sim robot, instantiate physics sim IO implementations
@@ -149,6 +152,8 @@ public class RobotContainer {
 
         vision = new VisionSubsystem(
             new VisionIOSim("left", VisionConstants.ROBOT_TO_CAMERA));
+
+        shooter = new ShooterSubsystem();
         break;
 
       // Replayed robot, disable IO implementations
@@ -169,6 +174,8 @@ public class RobotContainer {
         vision = new VisionSubsystem(
             new VisionIO() {
             });
+
+        shooter = new ShooterSubsystem();
         break;
     }
 
