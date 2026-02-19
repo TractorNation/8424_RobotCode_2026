@@ -15,13 +15,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  private TalonFX shooterMotor;
+  private TalonFX shooterMotorA;
+  private TalonFX shooterMotorB;
   private TalonFXConfiguration shooterMotorConfig;
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
     // Construct your motors
-    shooterMotor = new TalonFX(0);
+    shooterMotorA = new TalonFX(0);
+    shooterMotorB = new TalonFX(1);
 
     // Setup the configs
     shooterMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -30,10 +32,12 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorConfig.Slot0.kD = 0.0;
     shooterMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     
-    //secondShooterMotor.setControl(new Follower(0, false));
+    shooterMotorB.setControl(new Follower(0, false));
 
     // Apply the configs
-    shooterMotor.getConfigurator().apply(shooterMotorConfig);
+    shooterMotorA.getConfigurator().apply(shooterMotorConfig);
+    shooterMotorB.getConfigurator().apply(shooterMotorConfig);
+    
   }
 
 /**
@@ -41,7 +45,7 @@ public class ShooterSubsystem extends SubsystemBase {
  * @param velocity The velocity of the shooter in rps (max 100)
  */
   public void setShooterVelocity(double velocity){
-    shooterMotor.setControl(new VelocityVoltage(velocity));
+    shooterMotorA.setControl(new VelocityVoltage(velocity));
   }
 
   @Override
