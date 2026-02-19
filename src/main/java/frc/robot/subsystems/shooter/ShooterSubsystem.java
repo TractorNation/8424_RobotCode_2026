@@ -6,6 +6,7 @@ package frc.robot.subsystems.shooter;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
@@ -17,13 +18,16 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private TalonFX shooterMotorA;
   private TalonFX shooterMotorB;
+  private TalonFX hoodMotor;
   private TalonFXConfiguration shooterMotorConfig;
+  private TalonFXConfiguration hoodMotorConfig;
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
     // Construct your motors
     shooterMotorA = new TalonFX(0);
     shooterMotorB = new TalonFX(1);
+    hoodMotor = new TalonFX(2);
 
     // Setup the configs
     shooterMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -31,6 +35,12 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorConfig.Slot0.kI = 0.0;
     shooterMotorConfig.Slot0.kD = 0.0;
     shooterMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+
+    hoodMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    hoodMotorConfig.Slot0.kP = 0.1;
+    hoodMotorConfig.Slot0.kI = 0.0;
+    hoodMotorConfig.Slot0.kD = 0.0;
+    hoodMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     
     shooterMotorB.setControl(new Follower(0, false));
 
@@ -46,6 +56,10 @@ public class ShooterSubsystem extends SubsystemBase {
  */
   public void setShooterVelocity(double velocity){
     shooterMotorA.setControl(new VelocityVoltage(velocity));
+  }
+
+  public void setHoodPosition(double position) {
+    hoodMotor.setControl(new PositionVoltage(position));
   }
 
   @Override
