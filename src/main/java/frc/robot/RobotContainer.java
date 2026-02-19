@@ -79,6 +79,7 @@ public class RobotContainer {
   private final DriveSubsystem drive;
   private final ShooterSubsystem shooter;
   private final IntakeSubsystem intake;
+  private final FeederSubsystem feeder;
 
   @SuppressWarnings("unused")
   // Vision does not have any direct commands, so it is "unused" in this file
@@ -141,6 +142,8 @@ public class RobotContainer {
         shooter = new ShooterSubsystem();
 
         intake = new IntakeSubsystem();
+
+        feeder = new FeederSubsystem();
         break;
 
       // Sim robot, instantiate physics sim IO implementations
@@ -160,6 +163,8 @@ public class RobotContainer {
         shooter = new ShooterSubsystem();
 
         intake = new IntakeSubsystem();
+
+        feeder = new FeederSubsystem();
         break;
 
       // Replayed robot, disable IO implementations
@@ -184,6 +189,8 @@ public class RobotContainer {
         shooter = new ShooterSubsystem();
 
         intake = new IntakeSubsystem();
+
+        feeder = new FeederSubsystem();
         break;
     }
 
