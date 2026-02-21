@@ -10,6 +10,7 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -42,7 +43,7 @@ public class ShooterSubsystem extends SubsystemBase {
     hoodMotorConfig.Slot0.kD = 0.0;
     hoodMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     
-    shooterMotorB.setControl(new Follower(0, false));
+    shooterMotorB.setControl(new Follower(0, MotorAlignmentValue.Opposed));
 
     // Apply the configs
     shooterMotorA.getConfigurator().apply(shooterMotorConfig);
