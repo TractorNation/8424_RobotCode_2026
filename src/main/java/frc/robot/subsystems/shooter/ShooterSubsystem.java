@@ -48,7 +48,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // Apply the configs
     shooterMotorA.getConfigurator().apply(shooterMotorConfig);
     shooterMotorB.getConfigurator().apply(shooterMotorConfig);
-    
+    hoodMotor.getConfigurator().apply(hoodMotorConfig);
   }
 
 /**
