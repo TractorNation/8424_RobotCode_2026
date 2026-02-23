@@ -33,7 +33,7 @@ public class IntakeSubsystem extends SubsystemBase {
         armMotorConfig.Slot0.kI = 0.0;
         armMotorConfig.Slot0.kD = 0.0;
 
-        armMotorB.setControl(new Follower(1, MotorAlignmentValue.Opposed));
+        armMotorB.setControl(new Follower(armMotorB.getDeviceID(), MotorAlignmentValue.Opposed));
 
         // Apply configs
         rollerMotor.getConfigurator().apply(rollerMotorConfig);

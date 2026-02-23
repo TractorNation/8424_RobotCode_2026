@@ -43,7 +43,7 @@ public class ShooterSubsystem extends SubsystemBase {
     hoodMotorConfig.Slot0.kD = 0.0;
     hoodMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     
-    shooterMotorB.setControl(new Follower(0, MotorAlignmentValue.Opposed));
+    shooterMotorB.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
 
     // Apply the configs
     shooterMotorA.getConfigurator().apply(shooterMotorConfig);
