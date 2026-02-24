@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.commands.DriveCommands;
+import frc.robot.subsystems.climber.ClimberSubsystem;
 import frc.robot.subsystems.drive.DriveSubsystem;
 import frc.robot.subsystems.drive.GyroIO;
 import frc.robot.subsystems.drive.GyroIOPigeon2;
@@ -80,6 +81,7 @@ public class RobotContainer {
   private final ShooterSubsystem shooter;
   private final IntakeSubsystem intake;
   private final FeederSubsystem feeder;
+  private final ClimberSubsystem climber;
 
   @SuppressWarnings("unused")
   // Vision does not have any direct commands, so it is "unused" in this file
@@ -144,6 +146,8 @@ public class RobotContainer {
         intake = new IntakeSubsystem();
 
         feeder = new FeederSubsystem();
+
+        climber = new ClimberSubsystem();
         break;
 
       // Sim robot, instantiate physics sim IO implementations
@@ -165,6 +169,8 @@ public class RobotContainer {
         intake = new IntakeSubsystem();
 
         feeder = new FeederSubsystem();
+
+        climber = new ClimberSubsystem();
         break;
 
       // Replayed robot, disable IO implementations
@@ -191,6 +197,8 @@ public class RobotContainer {
         intake = new IntakeSubsystem();
 
         feeder = new FeederSubsystem();
+
+        climber = new ClimberSubsystem();
         break;
     }
 
