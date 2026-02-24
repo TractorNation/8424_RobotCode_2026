@@ -32,6 +32,7 @@ public class IntakeSubsystem extends SubsystemBase {
         armMotorConfig.Slot0.kP = 0.1;
         armMotorConfig.Slot0.kI = 0.0;
         armMotorConfig.Slot0.kD = 0.0;
+        armMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
         armMotorB.setControl(new Follower(armMotorB.getDeviceID(), MotorAlignmentValue.Opposed));
 
