@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.commands.DriveCommands;
 import frc.robot.commands.FeederCommands;
+import frc.robot.commands.IntakeCommands;
 import frc.robot.commands.ShooterCommands;
 import frc.robot.subsystems.climber.ClimberSubsystem;
 import frc.robot.subsystems.drive.DriveSubsystem;
@@ -323,6 +324,11 @@ public class RobotContainer {
     tractorController.button(6).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.MID));
     tractorController.button(7).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.HIGH));
     tractorController.button(8).onTrue(ShooterCommands.stopShooter(shooter));
+
+    tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 8));
+    tractorController.button(10).onTrue(IntakeCommands.pullArm(intake));
+    tractorController.button(11).onTrue(IntakeCommands.runRoller(intake, 5)).onFalse(IntakeCommands.stopRoller(intake));
+    tractorController.button(12).onTrue(IntakeCommands.runRoller(intake, -5)).onFalse(IntakeCommands.stopRoller(intake));
   }
 
   /**

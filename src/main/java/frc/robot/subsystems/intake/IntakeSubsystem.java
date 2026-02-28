@@ -43,7 +43,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     // Sets voltage for intake motor
-    public void setIntakeVoltage(double voltage) {
+    public void setRollerVoltage(double voltage) {
         rollerMotor.setVoltage(voltage);
     }
 
