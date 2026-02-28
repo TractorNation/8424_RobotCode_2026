@@ -20,6 +20,7 @@ import frc.robot.RobotState.VisionMeasurement;
 import frc.robot.subsystems.vision.VisionConstants.ObservationType;
 import frc.robot.subsystems.vision.VisionConstants.PoseObservation;
 import frc.robot.subsystems.vision.VisionConstants.TargetObservation;
+import frc.robot.subsystems.vision.VisionIO.VisionIOInputs;
 
 /**
  * Subsystem for managing vision processing and pose estimation from cameras.
@@ -86,7 +87,7 @@ import frc.robot.subsystems.vision.VisionConstants.TargetObservation;
  */
 public class VisionSubsystem extends SubsystemBase {
 
-  private final VisionIOInputsAutoLogged[] inputs;
+  private final VisionInputsAutoLogged[] inputs;
   private final VisionIO[] io;
   private final Alert[] disconnectedAlerts;
   private AprilTagFieldLayout tagLayout;

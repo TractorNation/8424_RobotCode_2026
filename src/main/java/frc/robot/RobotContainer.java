@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.commands.DriveCommands;
 import frc.robot.commands.FeederCommands;
+import frc.robot.commands.ShooterCommands;
 import frc.robot.subsystems.climber.ClimberSubsystem;
 import frc.robot.subsystems.drive.DriveSubsystem;
 import frc.robot.subsystems.drive.GyroIO;
@@ -21,6 +22,7 @@ import frc.robot.subsystems.drive.ModuleIOTalonFX;
 import frc.robot.subsystems.feeder.FeederSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
+import frc.robot.subsystems.shooter.ShooterSubsystem.ShooterMode;
 import frc.robot.subsystems.vision.VisionConstants;
 
 import frc.robot.subsystems.vision.VisionIO;
@@ -316,6 +318,11 @@ public class RobotContainer {
 
     tractorController.button(1).onTrue(FeederCommands.runFeeder(feeder, 5)).onFalse(FeederCommands.stopFeeder(feeder));
     tractorController.button(2).onTrue(FeederCommands.runFeeder(feeder, -5)).onFalse(FeederCommands.stopFeeder(feeder));
+
+    tractorController.button(5).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.LOW));
+    tractorController.button(6).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.MID));
+    tractorController.button(7).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.HIGH));
+    tractorController.button(8).onTrue(ShooterCommands.stopShooter(shooter));
   }
 
   /**

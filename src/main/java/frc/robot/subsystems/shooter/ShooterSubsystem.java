@@ -23,6 +23,9 @@ public class ShooterSubsystem extends SubsystemBase {
   private TalonFXConfiguration shooterMotorConfig;
   private TalonFXConfiguration hoodMotorConfig;
 
+  public enum ShooterMode {
+    LOW, MID, HIGH
+  }
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
     // Construct your motors
