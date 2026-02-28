@@ -34,7 +34,7 @@ public class IntakeSubsystem extends SubsystemBase {
         armMotorConfig.Slot0.kD = 0.0;
         armMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
-        armMotorB.setControl(new Follower(armMotorB.getDeviceID(), MotorAlignmentValue.Opposed));
+        armMotorB.setControl(new Follower(armMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
 
         // Apply configs
         rollerMotor.getConfigurator().apply(rollerMotorConfig);

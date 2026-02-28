@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.commands.DriveCommands;
+import frc.robot.commands.FeederCommands;
 import frc.robot.subsystems.climber.ClimberSubsystem;
 import frc.robot.subsystems.drive.DriveSubsystem;
 import frc.robot.subsystems.drive.GyroIO;
@@ -313,12 +314,8 @@ public class RobotContainer {
 
     // region Operator controls
 
-    /**
-     * This is where you would define button bindings and controls for our operator
-     * board,
-     * by default it has nothing since operator controls the robot's mechanisms and
-     * noe the drive base
-     */
+    tractorController.button(1).onTrue(FeederCommands.runFeeder(feeder, 5)).onFalse(FeederCommands.stopFeeder(feeder));
+    tractorController.button(2).onTrue(FeederCommands.runFeeder(feeder, -5)).onFalse(FeederCommands.stopFeeder(feeder));
   }
 
   /**
