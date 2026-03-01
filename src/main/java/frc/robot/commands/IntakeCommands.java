@@ -21,4 +21,9 @@ public class IntakeCommands {
     public static Command stopRoller(IntakeSubsystem intake) {
         return Commands.runOnce(() -> intake.setRollerVoltage(0), intake);
     }
+
+    public static Command incrementArm(IntakeSubsystem intake, double value){
+        return Commands.runOnce(() -> intake.incrementArmPos(value), intake);
+    }
+
 }

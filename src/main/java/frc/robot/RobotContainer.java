@@ -147,7 +147,7 @@ public class RobotContainer {
 
         shooter = new ShooterSubsystem();
 
-        intake = new IntakeSubsystem();
+        intake = new IntakeSubsystem(8.525);
 
         feeder = new FeederSubsystem();
 
@@ -170,7 +170,7 @@ public class RobotContainer {
 
         shooter = new ShooterSubsystem();
 
-        intake = new IntakeSubsystem();
+        intake = new IntakeSubsystem(8.525);
 
         feeder = new FeederSubsystem();
 
@@ -198,7 +198,7 @@ public class RobotContainer {
 
         shooter = new ShooterSubsystem();
 
-        intake = new IntakeSubsystem();
+        intake = new IntakeSubsystem(0);
 
         feeder = new FeederSubsystem();
 
@@ -316,18 +316,24 @@ public class RobotContainer {
 
     // region Operator controls
 
-    tractorController.button(1).onTrue(FeederCommands.runFeeder(feeder, 5)).onFalse(FeederCommands.stopFeeder(feeder));
-    tractorController.button(2).onTrue(FeederCommands.runFeeder(feeder, -5)).onFalse(FeederCommands.stopFeeder(feeder));
+    tractorController.button(1).onTrue(FeederCommands.runFeeder(feeder, 0.5)).onFalse(FeederCommands.stopFeeder(feeder));
+    tractorController.button(2).onTrue(FeederCommands.runFeeder(feeder, -0.5)).onFalse(FeederCommands.stopFeeder(feeder));
 
     tractorController.button(5).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.LOW));
     tractorController.button(6).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.MID));
     tractorController.button(7).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.HIGH));
     tractorController.button(8).onTrue(ShooterCommands.stopShooter(shooter));
 
-    tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 8));
-    tractorController.button(10).onTrue(IntakeCommands.pullArm(intake));
+    // tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 8));
+    // tractorController.button(10).onTrue(IntakeCommands.pullArm(intake));
     tractorController.button(11).onTrue(IntakeCommands.runRoller(intake, 5)).onFalse(IntakeCommands.stopRoller(intake));
     tractorController.button(12).onTrue(IntakeCommands.runRoller(intake, -5)).onFalse(IntakeCommands.stopRoller(intake));
+
+    // tractorController.button(9).onTrue(IntakeCommands.incrementArm(intake, 0.25));
+    // tractorController.button(10).onTrue(IntakeCommands.incrementArm(intake, -0.25));
+
+    tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 0));
+    tractorController.button(10).onTrue(IntakeCommands.extendArm(intake, 7.25));
   }
 
   /**
