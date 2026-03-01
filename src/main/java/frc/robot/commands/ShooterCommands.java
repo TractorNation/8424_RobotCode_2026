@@ -27,6 +27,6 @@ public class ShooterCommands {
     }
 
     public static Command stopShooter(ShooterSubsystem shooter) {
-        return Commands.runOnce(() -> shooter.setShooterVelocity(0), shooter);
+        return Commands.runOnce(() -> shooter.stopShooter(), shooter);
     }
 }

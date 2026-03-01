@@ -45,7 +45,7 @@ public class IntakeSubsystem extends SubsystemBase {
         rollerMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
 
         armMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
-        armMotorConfig.Slot0.kP = 0.8;
+        armMotorConfig.Slot0.kP = 0.7;
         armMotorConfig.Slot0.kI = 0.0;
         armMotorConfig.Slot0.kD = 0.0;
         armMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;

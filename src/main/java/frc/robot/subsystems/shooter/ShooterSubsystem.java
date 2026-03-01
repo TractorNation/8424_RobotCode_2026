@@ -66,6 +66,10 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorA.setControl(new VelocityVoltage(velocity));
   }
 
+  public void stopShooter() {
+    shooterMotorA.stopMotor();
+  }
+
   public void setHoodPosition(double position) {
     hoodMotor.setControl(new PositionVoltage(position));
   }
