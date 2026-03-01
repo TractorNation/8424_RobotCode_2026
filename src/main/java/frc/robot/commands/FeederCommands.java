@@ -7,10 +7,10 @@ import frc.robot.subsystems.feeder.FeederSubsystem;
 public class FeederCommands {
 
     public static Command runFeeder(FeederSubsystem feeder, double speed) {
-        return Commands.runOnce(() -> feeder.setFeederVoltage(speed), feeder);
+        return Commands.runOnce(() -> feeder.setFeederSpeed(speed), feeder);
     }
 
     public static Command stopFeeder(FeederSubsystem feeder) {
-        return Commands.runOnce(() -> feeder.setFeederVoltage(0), feeder);
+        return Commands.runOnce(() -> feeder.setFeederSpeed(0), feeder);
     }
 }

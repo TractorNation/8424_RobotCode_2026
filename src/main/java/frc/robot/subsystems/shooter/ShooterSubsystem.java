@@ -13,6 +13,7 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -37,8 +38,8 @@ public class ShooterSubsystem extends SubsystemBase {
     hoodMotorConfig = new TalonFXConfiguration();
 
     // Setup the configs
-    shooterMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
-    shooterMotorConfig.Slot0.kP = 0.1;
+    shooterMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    shooterMotorConfig.Slot0.kP = 1.0;
     shooterMotorConfig.Slot0.kI = 0.0;
     shooterMotorConfig.Slot0.kD = 0.0;
     shooterMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
@@ -72,5 +73,6 @@ public class ShooterSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("ShooterSpeedRPS", shooterMotorA.getVelocity().getValueAsDouble());
   }
 }
