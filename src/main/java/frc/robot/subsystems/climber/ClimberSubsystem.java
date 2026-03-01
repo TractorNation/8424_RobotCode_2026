@@ -15,6 +15,8 @@ public class ClimberSubsystem extends SubsystemBase {
     public ClimberSubsystem() {
         climberMotor = new TalonFX(19);
 
+        climberMotorConfig = new TalonFXConfiguration();
+
         climberMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive; 
         climberMotorConfig.Slot0.kP = 0.1;
         climberMotorConfig.Slot0.kI = 0.0;
