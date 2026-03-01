@@ -29,7 +29,6 @@ import frc.robot.subsystems.vision.VisionConstants;
 import frc.robot.subsystems.vision.VisionIO;
 import frc.robot.subsystems.vision.VisionIOLimelight;
 import frc.robot.subsystems.vision.VisionIOSim;
-import frc.robot.subsystems.vision.VisionSubsystem;
 import frc.robot.util.CommandNXT;
 
 /**
@@ -91,7 +90,7 @@ public class RobotContainer {
   @SuppressWarnings("unused")
   // Vision does not have any direct commands, so it is "unused" in this file
   // However, it must be initialized to run properly
-  private final VisionSubsystem vision;
+  // private final VisionSubsystem vision;
 
   // Programming controller
   private final CommandXboxController programmingController = new CommandXboxController(5);
@@ -143,8 +142,8 @@ public class RobotContainer {
             new ModuleIOTalonFX(2),
             new ModuleIOTalonFX(3));
 
-        vision = new VisionSubsystem(
-            new VisionIOLimelight("limelight"));
+        // vision = new VisionSubsystem(
+        //     new VisionIOLimelight("limelight"));
 
         shooter = new ShooterSubsystem();
 
@@ -166,8 +165,8 @@ public class RobotContainer {
             new ModuleIOSim(),
             new ModuleIOSim());
 
-        vision = new VisionSubsystem(
-            new VisionIOSim("left", VisionConstants.ROBOT_TO_CAMERA));
+        // vision = new VisionSubsystem(
+        //     new VisionIOSim("left", VisionConstants.ROBOT_TO_CAMERA));
 
         shooter = new ShooterSubsystem();
 
@@ -193,9 +192,9 @@ public class RobotContainer {
             },
             new ModuleIO() {
             });
-        vision = new VisionSubsystem(
-            new VisionIO() {
-            });
+        // vision = new VisionSubsystem(
+        //     new VisionIO() {
+        //     });
 
         shooter = new ShooterSubsystem();
 

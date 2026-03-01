@@ -24,6 +24,9 @@ public class IntakeSubsystem extends SubsystemBase {
         armMotorA = new TalonFX(17);
         armMotorB = new TalonFX(18);
 
+        rollerMotorConfig = new TalonFXConfiguration();
+        armMotorConfig = new TalonFXConfiguration();
+
         // Setup configs
         rollerMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         rollerMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;

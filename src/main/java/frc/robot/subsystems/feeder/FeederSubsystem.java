@@ -15,6 +15,8 @@ public class FeederSubsystem extends SubsystemBase {
         // Construct your motors
         feederMotor = new TalonFX(18);
 
+        feederMotorConfig = new TalonFXConfiguration();
+
         // Setup configs
         feederMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         feederMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;

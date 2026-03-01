@@ -33,6 +33,9 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorB = new TalonFX(14);
     hoodMotor = new TalonFX(15);
 
+    shooterMotorConfig = new TalonFXConfiguration();
+    hoodMotorConfig = new TalonFXConfiguration();
+
     // Setup the configs
     shooterMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     shooterMotorConfig.Slot0.kP = 0.1;
