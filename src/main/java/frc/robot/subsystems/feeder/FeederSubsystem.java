@@ -13,7 +13,7 @@ public class FeederSubsystem extends SubsystemBase {
 
     public FeederSubsystem() {
         // Construct your motors
-        feederMotor = new TalonFX(18);
+        feederMotor = new TalonFX(19);
 
         feederMotorConfig = new TalonFXConfiguration();
 

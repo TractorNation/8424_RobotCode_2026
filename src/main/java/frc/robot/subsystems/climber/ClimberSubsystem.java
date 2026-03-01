@@ -13,7 +13,7 @@ public class ClimberSubsystem extends SubsystemBase {
     private TalonFXConfiguration climberMotorConfig; 
 
     public ClimberSubsystem() {
-        climberMotor = new TalonFX(19);
+        climberMotor = new TalonFX(21);
 
         climberMotorConfig = new TalonFXConfiguration();
 
