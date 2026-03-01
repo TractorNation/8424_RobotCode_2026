@@ -29,9 +29,9 @@ public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
     // Construct your motors
-    shooterMotorA = new TalonFX(0);
-    shooterMotorB = new TalonFX(1);
-    hoodMotor = new TalonFX(2);
+    shooterMotorA = new TalonFX(13);
+    shooterMotorB = new TalonFX(14);
+    hoodMotor = new TalonFX(15);
 
     // Setup the configs
     shooterMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;

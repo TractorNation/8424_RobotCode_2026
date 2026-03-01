@@ -20,9 +20,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public IntakeSubsystem() {
         // Construct your motors
-        rollerMotor = new TalonFX(0);
-        armMotorA = new TalonFX(1);
-        armMotorB = new TalonFX(2);
+        rollerMotor = new TalonFX(16);
+        armMotorA = new TalonFX(17);
+        armMotorB = new TalonFX(18);
 
         // Setup configs
         rollerMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;

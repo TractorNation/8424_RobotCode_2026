@@ -13,7 +13,7 @@ public class FeederSubsystem extends SubsystemBase {
 
     public FeederSubsystem() {
         // Construct your motors
-        feederMotor = new TalonFX(0);
+        feederMotor = new TalonFX(18);
 
         // Setup configs
         feederMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
