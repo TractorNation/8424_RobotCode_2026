@@ -12,15 +12,15 @@ public class ShooterCommands {
             switch (mode) {
                 case LOW:
                     shooter.setShooterVelocity(50);
-                    shooter.setHoodPosition(0.1);
+                    //shooter.setHoodPosition(0.1);
                     break;
                 case MID:
                     shooter.setShooterVelocity(75);
-                    shooter.setHoodPosition(0.2);
+                    //shooter.setHoodPosition(0.2);
                     break;
                 case HIGH:
                     shooter.setShooterVelocity(100);
-                    shooter.setHoodPosition(0.3);
+                    //shooter.setHoodPosition(0.3);
                     break;
             }       
         }, shooter);
