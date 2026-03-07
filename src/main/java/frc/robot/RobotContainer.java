@@ -334,7 +334,7 @@ public class RobotContainer {
 
     tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 0));
     tractorController.button(10).onTrue(IntakeCommands.extendArm(intake, 7.25));
-    tractorController.button(3).onTrue(IntakeCommands.extendArm(intake, 4));
+    tractorController.button(3).onTrue(IntakeCommands.extendArm(intake, 3));
     tractorController.button(4).onTrue(IntakeCommands.extendArm(intake, 7.25));
   }
 
