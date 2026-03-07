@@ -272,7 +272,7 @@ public class RobotContainer {
                 drive,
                 () -> -mainTranslation.StickYAxis() * 1.0,
                 () -> -mainTranslation.StickXAxis() * 1.0,
-                () -> -mainRotation.StickXAxis() * 0.7,
+                () -> -mainRotation.StickXAxis() * -0.7,
                 1,
                 mainTranslation.fireStage1()
                     .or(mainTranslation.fireStage2())));
@@ -334,6 +334,8 @@ public class RobotContainer {
 
     tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 0));
     tractorController.button(10).onTrue(IntakeCommands.extendArm(intake, 7.25));
+    tractorController.button(3).onTrue(IntakeCommands.extendArm(intake, 4));
+    tractorController.button(4).onTrue(IntakeCommands.extendArm(intake, 7.25));
   }
 
   /**

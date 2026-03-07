@@ -15,7 +15,7 @@ public class ShooterCommands {
                     //shooter.setHoodPosition(0.1);
                     break;
                 case MID:
-                    shooter.setShooterVelocity(75);
+                    shooter.setShooterVelocity(80);
                     //shooter.setHoodPosition(0.2);
                     break;
                 case HIGH:
