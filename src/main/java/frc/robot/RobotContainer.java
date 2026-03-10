@@ -2,7 +2,9 @@ package frc.robot;
 
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
+import com.fasterxml.jackson.databind.util.Named;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -207,7 +209,10 @@ public class RobotContainer {
     }
 
     // region Autonomous Commands
-
+    NamedCommands.registerCommand("shoot", Commands.parallel(ShooterCommands.updateShooterState(shooter, ShooterMode.MID), FeederCommands.runFeeder(feeder, 0.5)));
+    NamedCommands.registerCommand("stopShooter", Commands.parallel(ShooterCommands.stopShooter(shooter), FeederCommands.stopFeeder(feeder)));
+    NamedCommands.registerCommand("intake", Commands.parallel(IntakeCommands.extendArm(intake, 7.25), IntakeCommands.runRoller(intake, 5)));
+    NamedCommands.registerCommand("stopIntake", Commands.parallel(IntakeCommands.pullArm(intake), IntakeCommands.stopRoller(intake)));
     // Set up auto routines
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", AutoBuilder.buildAutoChooser());
 

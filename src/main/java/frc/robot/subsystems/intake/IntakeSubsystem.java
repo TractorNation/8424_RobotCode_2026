@@ -12,6 +12,7 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.MotorArrangementValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.hardware.TalonFXS;
 
 import edu.wpi.first.units.measure.Angle;
@@ -20,10 +21,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    private TalonFXS rollerMotor;
+    private TalonFX rollerMotor;
     private TalonFXS armMotorA;
     private TalonFXS armMotorB;
-    private TalonFXSConfiguration rollerMotorConfig;
+    private TalonFXConfiguration rollerMotorConfig;
     private TalonFXSConfiguration armMotorConfig;
 
     private StatusSignal<Angle> armMotorPosition;
@@ -32,17 +33,16 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public IntakeSubsystem(double maxArmPosition) {
         // Construct your motors
-        rollerMotor = new TalonFXS(16, "rio");
+        rollerMotor = new TalonFX(16);
         armMotorA = new TalonFXS(17, "rio");
         armMotorB = new TalonFXS(18, "rio");
 
-        rollerMotorConfig = new TalonFXSConfiguration();
+        rollerMotorConfig = new TalonFXConfiguration();
         armMotorConfig = new TalonFXSConfiguration();
 
         // Setup configs
         rollerMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         rollerMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-        rollerMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
 
         armMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         armMotorConfig.Slot0.kP = 0.7;
