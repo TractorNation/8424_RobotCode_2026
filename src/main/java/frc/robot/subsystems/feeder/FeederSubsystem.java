@@ -19,7 +19,7 @@ public class FeederSubsystem extends SubsystemBase {
         feederMotorConfig = new TalonFXSConfiguration();
 
         // Setup configs
-        feederMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+        feederMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         feederMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         feederMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
 

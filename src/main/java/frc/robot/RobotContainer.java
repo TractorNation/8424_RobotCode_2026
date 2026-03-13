@@ -209,10 +209,10 @@ public class RobotContainer {
     }
 
     // region Autonomous Commands
-    NamedCommands.registerCommand("shoot", Commands.parallel(ShooterCommands.updateShooterState(shooter, ShooterMode.MID), FeederCommands.runFeeder(feeder, 0.5)));
-    NamedCommands.registerCommand("stopShooter", Commands.parallel(ShooterCommands.stopShooter(shooter), FeederCommands.stopFeeder(feeder)));
-    NamedCommands.registerCommand("intake", Commands.parallel(IntakeCommands.extendArm(intake, 7.25), IntakeCommands.runRoller(intake, 5)));
-    NamedCommands.registerCommand("stopIntake", Commands.parallel(IntakeCommands.pullArm(intake), IntakeCommands.stopRoller(intake)));
+    //NamedCommands.registerCommand("shoot", Commands.parallel(ShooterCommands.updateShooterState(shooter, ShooterMode.MID), FeederCommands.runFeeder(feeder, 0.5)));
+    //NamedCommands.registerCommand("stopShooter", Commands.parallel(ShooterCommands.stopShooter(shooter), FeederCommands.stopFeeder(feeder)));
+    //NamedCommands.registerCommand("intake", Commands.parallel(IntakeCommands.extendArm(intake, 7.25), IntakeCommands.runRoller(intake, 5)));
+    //NamedCommands.registerCommand("stopIntake", Commands.parallel(IntakeCommands.pullArm(intake), IntakeCommands.stopRoller(intake)));
     // Set up auto routines
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", AutoBuilder.buildAutoChooser());
 
@@ -321,8 +321,8 @@ public class RobotContainer {
 
     // region Operator controls
 
-    tractorController.button(1).onTrue(FeederCommands.runFeeder(feeder, 0.5)).onFalse(FeederCommands.stopFeeder(feeder));
-    tractorController.button(2).onTrue(FeederCommands.runFeeder(feeder, -0.5)).onFalse(FeederCommands.stopFeeder(feeder));
+    tractorController.button(4).onTrue(FeederCommands.runFeeder(feeder, 1)).onFalse(FeederCommands.stopFeeder(feeder));
+    tractorController.button(9).onTrue(FeederCommands.runFeeder(feeder, -1)).onFalse(FeederCommands.stopFeeder(feeder));
 
     tractorController.button(5).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.LOW));
     tractorController.button(6).onTrue(ShooterCommands.updateShooterState(shooter, ShooterMode.MID));
@@ -332,15 +332,14 @@ public class RobotContainer {
     // tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 8));
     // tractorController.button(10).onTrue(IntakeCommands.pullArm(intake));
     tractorController.button(11).onTrue(IntakeCommands.runRoller(intake, 5)).onFalse(IntakeCommands.stopRoller(intake));
-    tractorController.button(12).onTrue(IntakeCommands.runRoller(intake, -5)).onFalse(IntakeCommands.stopRoller(intake));
+    tractorController.button(10).onTrue(IntakeCommands.runRoller(intake, -5)).onFalse(IntakeCommands.stopRoller(intake));
 
     // tractorController.button(9).onTrue(IntakeCommands.incrementArm(intake, 0.25));
     // tractorController.button(10).onTrue(IntakeCommands.incrementArm(intake, -0.25));
 
-    tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 0));
-    tractorController.button(10).onTrue(IntakeCommands.extendArm(intake, 7.25));
+    tractorController.button(1).onTrue(IntakeCommands.extendArm(intake, 0));
+    tractorController.button(2).onTrue(IntakeCommands.extendArm(intake, 7.25));
     tractorController.button(3).onTrue(IntakeCommands.extendArm(intake, 3));
-    tractorController.button(4).onTrue(IntakeCommands.extendArm(intake, 7.25));
   }
 
   /**
