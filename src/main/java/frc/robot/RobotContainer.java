@@ -275,8 +275,8 @@ public class RobotContainer {
         drive.setDefaultCommand(
             DriveCommands.joystickDrive(
                 drive,
-                () -> -mainTranslation.StickYAxis() * 1.0,
-                () -> -mainTranslation.StickXAxis() * 1.0,
+                () -> -mainTranslation.StickYAxis() * -1.0,
+                () -> -mainTranslation.StickXAxis() * -1.0,
                 () -> -mainRotation.StickXAxis() * -0.7,
                 1,
                 mainTranslation.fireStage1()

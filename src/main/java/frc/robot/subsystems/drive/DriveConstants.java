@@ -57,7 +57,7 @@ public class DriveConstants {
   public static final double KV_DRIVE = 0.70; // 12V/max speed roughly, 12/(16.9 rot/s) = .71
   public static final double KS_DRIVE = 0.0;
 
-  public static final int DRIVE_CURRENT_LIMIT = 155;
+  public static final int DRIVE_CURRENT_LIMIT = 50;
   public static final int TURN_CURRENT_LIMIT = 15;
 
   // Used to calculate feed forward for turn speed in 2nd order dynamics calc.

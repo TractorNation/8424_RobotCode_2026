@@ -21,7 +21,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    private TalonFX rollerMotor;
+    private TalonFX rollerMotorA;
+    //private TalonFX rollerMotorB;
     private TalonFXS armMotorA;
     private TalonFXS armMotorB;
     private TalonFXConfiguration rollerMotorConfig;
@@ -33,7 +34,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public IntakeSubsystem(double maxArmPosition) {
         // Construct your motors
-        rollerMotor = new TalonFX(16);
+        rollerMotorA = new TalonFX(16);
+        //rollerMotorB = new TalonFX(21);
         armMotorA = new TalonFXS(17, "rio");
         armMotorB = new TalonFXS(18, "rio");
 
@@ -43,6 +45,8 @@ public class IntakeSubsystem extends SubsystemBase {
         // Setup configs
         rollerMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         rollerMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+        rollerMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+        rollerMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
 
         armMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         armMotorConfig.Slot0.kP = 0.7;
@@ -50,13 +54,18 @@ public class IntakeSubsystem extends SubsystemBase {
         armMotorConfig.Slot0.kD = 0.0;
         armMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
         armMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
+        armMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+        armMotorConfig.CurrentLimits.SupplyCurrentLimit = 25;
+
 
         armMotorB.setControl(new Follower(armMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
+        //rollerMotorB.setControl(new Follower(rollerMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
 
         armMotorPosition = armMotorA.getPosition();
 
         // Apply configs
-        rollerMotor.getConfigurator().apply(rollerMotorConfig);
+        rollerMotorA.getConfigurator().apply(rollerMotorConfig);
+        //rollerMotorB.getConfigurator().apply(rollerMotorConfig);
         armMotorA.getConfigurator().apply(armMotorConfig);
         armMotorB.getConfigurator().apply(armMotorConfig);
 
@@ -65,7 +74,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     // Sets voltage for intake motor
     public void setRollerVoltage(double voltage) {
-        rollerMotor.setVoltage(voltage);
+        rollerMotorA.setVoltage(voltage);
     }
 
     public void setArmPosition(double position) {

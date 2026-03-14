@@ -22,6 +22,8 @@ public class FeederSubsystem extends SubsystemBase {
         feederMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         feederMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         feederMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
+        feederMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+        feederMotorConfig.CurrentLimits.SupplyCurrentLimit = 40;
 
         // Apply configs
         feederMotor.getConfigurator().apply(feederMotorConfig);

@@ -43,6 +43,8 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorConfig.Slot0.kI = 0.0;
     shooterMotorConfig.Slot0.kD = 0.0;
     shooterMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    shooterMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+    shooterMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
 
     hoodMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     hoodMotorConfig.Slot0.kP = 0.1;
