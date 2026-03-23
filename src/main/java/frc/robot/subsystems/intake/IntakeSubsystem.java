@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IntakeSubsystem extends SubsystemBase {
 
     private TalonFX rollerMotorA;
-    //private TalonFX rollerMotorB;
+    private TalonFX rollerMotorB;
     private TalonFXS armMotorA;
     private TalonFXS armMotorB;
     private TalonFXConfiguration rollerMotorConfig;
@@ -35,7 +35,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public IntakeSubsystem(double maxArmPosition) {
         // Construct your motors
         rollerMotorA = new TalonFX(16);
-        //rollerMotorB = new TalonFX(21);
+        rollerMotorB = new TalonFX(21);
         armMotorA = new TalonFXS(17, "rio");
         armMotorB = new TalonFXS(18, "rio");
 
@@ -43,7 +43,7 @@ public class IntakeSubsystem extends SubsystemBase {
         armMotorConfig = new TalonFXSConfiguration();
 
         // Setup configs
-        rollerMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+        rollerMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
         rollerMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         rollerMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
         rollerMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
@@ -59,7 +59,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
 
         armMotorB.setControl(new Follower(armMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
-        //rollerMotorB.setControl(new Follower(rollerMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
+        rollerMotorB.setControl(new Follower(rollerMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
 
         armMotorPosition = armMotorA.getPosition();
 
