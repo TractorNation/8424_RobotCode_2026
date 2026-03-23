@@ -277,7 +277,7 @@ public class RobotContainer {
                 drive,
                 () -> -mainTranslation.StickYAxis() * -1.0,
                 () -> -mainTranslation.StickXAxis() * -1.0,
-                () -> -mainRotation.StickXAxis() * -0.7,
+                () -> -mainRotation.StickXAxis() * 0.7,
                 1,
                 mainTranslation.fireStage1()
                     .or(mainTranslation.fireStage2())));
