@@ -22,8 +22,21 @@ public class IntakeCommands {
         return Commands.runOnce(() -> intake.setRollerVoltage(0), intake);
     }
 
-    public static Command incrementArm(IntakeSubsystem intake, double value){
+    public static Command incrementArm(IntakeSubsystem intake, double value) {
         return Commands.runOnce(() -> intake.incrementArmPos(value), intake);
     }
 
+    public static Command autonomousStopIntake(IntakeSubsystem intake) {
+        return Commands.runOnce(() -> {
+            intake.setRollerVoltage(0);
+            intake.setArmPosition(0);
+        }, intake);
+    }
+
+    public static Command autonomousRunIntake(IntakeSubsystem intake, double armRotations, double rollerSpeed) {
+        return Commands.runOnce(() -> {
+            intake.setArmPosition(armRotations);
+            intake.setRollerVoltage(rollerSpeed);
+        }, intake);
+    }
 }

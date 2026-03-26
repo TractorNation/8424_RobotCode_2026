@@ -2,12 +2,12 @@ package frc.robot;
 
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
-import com.fasterxml.jackson.databind.util.Named;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
@@ -27,10 +27,10 @@ import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem.ShooterMode;
 import frc.robot.subsystems.vision.VisionConstants;
-
 import frc.robot.subsystems.vision.VisionIO;
 import frc.robot.subsystems.vision.VisionIOLimelight;
 import frc.robot.subsystems.vision.VisionIOSim;
+import frc.robot.subsystems.vision.VisionSubsystem;
 import frc.robot.util.CommandNXT;
 
 /**
@@ -92,7 +92,7 @@ public class RobotContainer {
   @SuppressWarnings("unused")
   // Vision does not have any direct commands, so it is "unused" in this file
   // However, it must be initialized to run properly
-  // private final VisionSubsystem vision;
+  private final VisionSubsystem vision;
 
   // Programming controller
   private final CommandXboxController programmingController = new CommandXboxController(5);
@@ -144,8 +144,8 @@ public class RobotContainer {
             new ModuleIOTalonFX(2),
             new ModuleIOTalonFX(3));
 
-        // vision = new VisionSubsystem(
-        //     new VisionIOLimelight("limelight"));
+        vision = new VisionSubsystem(
+            new VisionIOLimelight("limelight-back"));
 
         shooter = new ShooterSubsystem();
 
@@ -167,8 +167,8 @@ public class RobotContainer {
             new ModuleIOSim(),
             new ModuleIOSim());
 
-        // vision = new VisionSubsystem(
-        //     new VisionIOSim("left", VisionConstants.ROBOT_TO_CAMERA));
+        vision = new VisionSubsystem(
+            new VisionIOSim("left", VisionConstants.ROBOT_TO_CAMERA));
 
         shooter = new ShooterSubsystem();
 
@@ -194,9 +194,9 @@ public class RobotContainer {
             },
             new ModuleIO() {
             });
-        // vision = new VisionSubsystem(
-        //     new VisionIO() {
-        //     });
+        vision = new VisionSubsystem(
+            new VisionIO() {
+            });
 
         shooter = new ShooterSubsystem();
 
@@ -209,10 +209,12 @@ public class RobotContainer {
     }
 
     // region Autonomous Commands
-    //NamedCommands.registerCommand("shoot", Commands.parallel(ShooterCommands.updateShooterState(shooter, ShooterMode.MID), FeederCommands.runFeeder(feeder, 0.5)));
-    //NamedCommands.registerCommand("stopShooter", Commands.parallel(ShooterCommands.stopShooter(shooter), FeederCommands.stopFeeder(feeder)));
-    //NamedCommands.registerCommand("intake", Commands.parallel(IntakeCommands.extendArm(intake, 7.25), IntakeCommands.runRoller(intake, 5)));
-    //NamedCommands.registerCommand("stopIntake", Commands.parallel(IntakeCommands.pullArm(intake), IntakeCommands.stopRoller(intake)));
+    NamedCommands.registerCommand("shoot", Commands.parallel(ShooterCommands.updateShooterState(shooter, ShooterMode.MID), FeederCommands.runFeeder(feeder, 0.5)));
+    NamedCommands.registerCommand("stopShooter", Commands.parallel(ShooterCommands.stopShooter(shooter), FeederCommands.stopFeeder(feeder)));
+    NamedCommands.registerCommand("intake", IntakeCommands.autonomousRunIntake(intake, 7.25, 5));
+    NamedCommands.registerCommand("stopIntake", IntakeCommands.autonomousStopIntake(intake));
+    NamedCommands.registerCommand("armOut", IntakeCommands.autonomousRunIntake(intake, 7.25, 0));
+    NamedCommands.registerCommand("armIn", IntakeCommands.autonomousRunIntake(intake, 0, 0));
     // Set up auto routines
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", AutoBuilder.buildAutoChooser());
 
@@ -275,9 +277,9 @@ public class RobotContainer {
         drive.setDefaultCommand(
             DriveCommands.joystickDrive(
                 drive,
-                () -> -mainTranslation.StickYAxis() * -1.0,
-                () -> -mainTranslation.StickXAxis() * -1.0,
-                () -> -mainRotation.StickXAxis() * 0.7,
+                () -> mainTranslation.StickYAxis() * -1.0,
+                () -> mainTranslation.StickXAxis() * -1.0,
+                () -> mainRotation.StickXAxis() * -0.7,
                 1,
                 mainTranslation.fireStage1()
                     .or(mainTranslation.fireStage2())));

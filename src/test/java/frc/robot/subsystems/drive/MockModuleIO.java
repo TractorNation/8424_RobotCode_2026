@@ -12,7 +12,6 @@ public class MockModuleIO implements ModuleIO {
   private ModuleIOInputs inputs = new ModuleIOInputs();
   private double driveVoltage = 0.0;
   private double turnVoltage = 0.0;
-  @SuppressWarnings("unused")
   private double driveVelocity = 3;
   private Rotation2d turnSetpoint = new Rotation2d();
 

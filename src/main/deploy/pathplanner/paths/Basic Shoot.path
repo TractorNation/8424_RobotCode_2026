@@ -3,12 +3,12 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.3306746987951805,
+        "x": 3.482158956109135,
         "y": 3.9694337349397593
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.838927710843373,
+        "x": 2.9904119681573276,
         "y": 3.9694337349397593
       },
       "isLocked": false,
@@ -20,7 +20,23 @@
         "y": 3.9694337349397593
       },
       "prevControl": {
-        "x": 2.3471807228915655,
+        "x": 2.0835443568830176,
+        "y": 3.9653134155392644
+      },
+      "nextControl": {
+        "x": 1.5836122696230066,
+        "y": 3.973554054340254
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.5670225385527887,
+        "y": 3.9694337349397593
+      },
+      "prevControl": {
+        "x": 2.080624948191342,
         "y": 3.9803614457831324
       },
       "nextControl": null,
@@ -43,19 +59,31 @@
             {
               "type": "named",
               "data": {
+                "name": "armOut"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
                 "name": "shoot"
               }
             },
             {
               "type": "wait",
               "data": {
-                "waitTime": 10.0
+                "waitTime": 5.0
               }
             },
             {
               "type": "named",
               "data": {
                 "name": "stopShooter"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "stopIntake"
               }
             }
           ]
