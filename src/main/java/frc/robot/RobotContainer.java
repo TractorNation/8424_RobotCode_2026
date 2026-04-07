@@ -215,6 +215,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("stopIntake", IntakeCommands.autonomousStopIntake(intake));
     NamedCommands.registerCommand("armOut", IntakeCommands.autonomousRunIntake(intake, 7.25, 0));
     NamedCommands.registerCommand("armIn", IntakeCommands.autonomousRunIntake(intake, 0, 0));
+    NamedCommands.registerCommand("runRoller", IntakeCommands.autonomousRunIntake(intake, 0, 5));
+    NamedCommands.registerCommand("stopRoller", IntakeCommands.autonomousRunIntake(intake, 7.25, 0));
     // Set up auto routines
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", AutoBuilder.buildAutoChooser());
 
@@ -277,14 +279,15 @@ public class RobotContainer {
         drive.setDefaultCommand(
             DriveCommands.joystickDrive(
                 drive,
-                () -> mainTranslation.StickYAxis() * -1.0,
-                () -> mainTranslation.StickXAxis() * -1.0,
+                () -> mainTranslation.StickYAxis() * 1.0,
+                () -> mainTranslation.StickXAxis() * 1.0,
                 () -> mainRotation.StickXAxis() * -0.7,
                 1,
                 mainTranslation.fireStage1()
                     .or(mainTranslation.fireStage2())));
 
         mainTranslation.B1().onTrue(Commands.runOnce(robotState::zeroHeading));
+        //mainTranslation.D1().onTrue(Commands.runOnce(robotState::zeroHeading));
 
         mainTranslation.A2().whileTrue(Commands.run(() -> drive.stopWithX(), drive));
         break;
@@ -339,8 +342,8 @@ public class RobotContainer {
     // tractorController.button(9).onTrue(IntakeCommands.incrementArm(intake, 0.25));
     // tractorController.button(10).onTrue(IntakeCommands.incrementArm(intake, -0.25));
 
-    tractorController.button(1).onTrue(IntakeCommands.extendArm(intake, 0));
-    tractorController.button(2).onTrue(IntakeCommands.extendArm(intake, 7.25));
+    tractorController.button(1).onTrue(IntakeCommands.extendArm(intake, -0.1));
+    tractorController.button(2).onTrue(IntakeCommands.extendArm(intake, 7));
     tractorController.button(3).onTrue(IntakeCommands.extendArm(intake, 3));
   }
 

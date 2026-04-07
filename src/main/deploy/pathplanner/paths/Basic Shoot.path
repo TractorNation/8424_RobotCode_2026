@@ -71,7 +71,31 @@
             {
               "type": "wait",
               "data": {
-                "waitTime": 5.0
+                "waitTime": 2.5
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "armIn"
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 1.25
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "armOut"
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 1.25
               }
             },
             {
