@@ -1,7 +1,7 @@
 package frc.robot.subsystems.feeder;
 
-import com.ctre.phoenix6.configs.TalonFXSConfiguration;
-import com.ctre.phoenix6.hardware.TalonFXS;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorArrangementValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -9,19 +9,18 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import  edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class FeederSubsystem extends SubsystemBase {
-    private TalonFXS feederMotor;
-    private TalonFXSConfiguration feederMotorConfig;
+    private TalonFX feederMotor;
+    private TalonFXConfiguration feederMotorConfig;
 
     public FeederSubsystem() {
         // Construct your motors
-        feederMotor = new TalonFXS(19, "rio");
+        feederMotor = new TalonFX(19);
 
-        feederMotorConfig = new TalonFXSConfiguration();
+        feederMotorConfig = new TalonFXConfiguration();
 
         // Setup configs
         feederMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         feederMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-        feederMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
         feederMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
         feederMotorConfig.CurrentLimits.SupplyCurrentLimit = 40;
 

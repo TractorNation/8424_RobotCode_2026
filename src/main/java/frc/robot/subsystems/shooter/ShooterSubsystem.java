@@ -5,12 +5,15 @@
 package frc.robot.subsystems.shooter;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.configs.TalonFXSConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.hardware.TalonFXS;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
+import com.ctre.phoenix6.signals.MotorArrangementValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,22 +23,27 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private TalonFX shooterMotorA;
   private TalonFX shooterMotorB;
+  private TalonFXS kickerMotor;
   private TalonFX hoodMotor;
   private TalonFXConfiguration shooterMotorConfig;
   private TalonFXConfiguration hoodMotorConfig;
+  private TalonFXSConfiguration kickerMotorConfig;
 
   public enum ShooterMode {
     LOW, MID, HIGH
   }
+
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
     // Construct your motors
     shooterMotorA = new TalonFX(13);
     shooterMotorB = new TalonFX(14);
+    kickerMotor = new TalonFXS(22);
     hoodMotor = new TalonFX(15);
 
     shooterMotorConfig = new TalonFXConfiguration();
     hoodMotorConfig = new TalonFXConfiguration();
+    kickerMotorConfig = new TalonFXSConfiguration();
 
     // Setup the configs
     shooterMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -51,20 +59,32 @@ public class ShooterSubsystem extends SubsystemBase {
     hoodMotorConfig.Slot0.kI = 0.0;
     hoodMotorConfig.Slot0.kD = 0.0;
     hoodMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-    
-    shooterMotorB.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
+
+    kickerMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
+    kickerMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    kickerMotorConfig.Slot0.kP = 1.0;
+    kickerMotorConfig.Slot0.kI = 0.0;
+    kickerMotorConfig.Slot0.kD = 0.0;
+    kickerMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    kickerMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+    kickerMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
+
 
     // Apply the configs
     shooterMotorA.getConfigurator().apply(shooterMotorConfig);
     shooterMotorB.getConfigurator().apply(shooterMotorConfig);
+    kickerMotor.getConfigurator().apply(kickerMotorConfig);
     hoodMotor.getConfigurator().apply(hoodMotorConfig);
+
+    shooterMotorB.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
+    kickerMotor.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
   }
 
-/**
- * 
- * @param velocity The velocity of the shooter in rps (max 100)
- */
-  public void setShooterVelocity(double velocity){
+  /**
+   * 
+   * @param velocity The velocity of the shooter in rps (max 100)
+   */
+  public void setShooterVelocity(double velocity) {
     shooterMotorA.setControl(new VelocityVoltage(velocity));
   }
 
