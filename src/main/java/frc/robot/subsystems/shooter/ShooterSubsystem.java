@@ -24,9 +24,7 @@ public class ShooterSubsystem extends SubsystemBase {
   private TalonFX shooterMotorA;
   private TalonFX shooterMotorB;
   private TalonFXS kickerMotor;
-  private TalonFX hoodMotor;
   private TalonFXConfiguration shooterMotorConfig;
-  private TalonFXConfiguration hoodMotorConfig;
   private TalonFXSConfiguration kickerMotorConfig;
 
   public enum ShooterMode {
@@ -38,11 +36,9 @@ public class ShooterSubsystem extends SubsystemBase {
     // Construct your motors
     shooterMotorA = new TalonFX(13);
     shooterMotorB = new TalonFX(14);
-    kickerMotor = new TalonFXS(22);
-    hoodMotor = new TalonFX(15);
+    kickerMotor = new TalonFXS(15);
 
     shooterMotorConfig = new TalonFXConfiguration();
-    hoodMotorConfig = new TalonFXConfiguration();
     kickerMotorConfig = new TalonFXSConfiguration();
 
     // Setup the configs
@@ -53,12 +49,6 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     shooterMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     shooterMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
-
-    hoodMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
-    hoodMotorConfig.Slot0.kP = 0.1;
-    hoodMotorConfig.Slot0.kI = 0.0;
-    hoodMotorConfig.Slot0.kD = 0.0;
-    hoodMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
     kickerMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
     kickerMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -74,7 +64,6 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorA.getConfigurator().apply(shooterMotorConfig);
     shooterMotorB.getConfigurator().apply(shooterMotorConfig);
     kickerMotor.getConfigurator().apply(kickerMotorConfig);
-    hoodMotor.getConfigurator().apply(hoodMotorConfig);
 
     shooterMotorB.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
     kickerMotor.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
@@ -90,10 +79,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void stopShooter() {
     shooterMotorA.stopMotor();
-  }
-
-  public void setHoodPosition(double position) {
-    hoodMotor.setControl(new PositionVoltage(position));
   }
 
   @Override
