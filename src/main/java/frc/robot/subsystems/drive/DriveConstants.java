@@ -16,15 +16,15 @@ public class DriveConstants {
   public static final double MAX_LINEAR_SPEED = Units.feetToMeters(17.7);
   public static final double MAX_ANGULAR_SPEED = (MAX_LINEAR_SPEED / Constants.DRIVE_BASE_RADIUS);
 
-  public static final Rotation2d PROTOBOT_BACK_LEFT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.239746);
-  public static final Rotation2d PROTOBOT_BACK_RIGHT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.437744);
-  public static final Rotation2d PROTOBOT_FRONT_LEFT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.021729);
-  public static final Rotation2d PROTOBOT_FRONT_RIGHT_ENCODER_OFFSET = Rotation2d.fromRotations(0.074219);
+  public static final Rotation2d PROTOBOT_BACK_LEFT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.246338);
+  public static final Rotation2d PROTOBOT_BACK_RIGHT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.432617);
+  public static final Rotation2d PROTOBOT_FRONT_LEFT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.022217);
+  public static final Rotation2d PROTOBOT_FRONT_RIGHT_ENCODER_OFFSET = Rotation2d.fromRotations(0.086670);
 
-  public static final Rotation2d COMPBOT_BACK_LEFT_ENCODER_OFFSET = Rotation2d.fromRotations(0.446533);
-  public static final Rotation2d COMPBOT_BACK_RIGHT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.184326);
-  public static final Rotation2d COMPBOT_FRONT_LEFT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.268066);
-  public static final Rotation2d COMPBOT_FRONT_RIGHT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.105469);
+  public static final Rotation2d COMPBOT_BACK_LEFT_ENCODER_OFFSET = Rotation2d.fromRotations(0.246337890625);
+  public static final Rotation2d COMPBOT_BACK_RIGHT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.367188);
+  public static final Rotation2d COMPBOT_FRONT_LEFT_ENCODER_OFFSET = Rotation2d.fromRotations(0.022216796875);
+  public static final Rotation2d COMPBOT_FRONT_RIGHT_ENCODER_OFFSET = Rotation2d.fromRotations(-0.086669921875);
 
   public static final double PROTOBOT_DRIVE_GEAR_RATIO = (50.0 / 16.0) * (17.0 / 27.0) * (45.0 / 15.0);
 

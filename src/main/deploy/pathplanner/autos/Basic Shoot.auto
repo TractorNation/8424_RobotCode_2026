@@ -9,6 +9,49 @@
           "data": {
             "pathName": "Basic Shoot"
           }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shoot"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.5
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "armIn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.125
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "armOut"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.125
+                }
+              }
+            ]
+          }
         }
       ]
     }

@@ -111,6 +111,8 @@ public class DriveSubsystem extends SubsystemBase {
   private final Module[] modules = new Module[4]; // FL, FR, BL, BR
   private final SysIdRoutine sysId;
 
+  public double joystickReverse = 1;
+
   /**
    * Constructs a DriveSubsystem with the specified IO implementations.
    * 
@@ -362,6 +364,16 @@ public class DriveSubsystem extends SubsystemBase {
     }
     DriveConstants.kinematics.resetHeadings(headings);
     stop();
+  }
+
+  //Toggle joystickReverse
+  public void toggleJoystickReverse() {
+    if (joystickReverse == -1) {
+      joystickReverse = 1;
+    }
+    else {
+      joystickReverse = -1;
+    }
   }
 
   /** Returns a command to run a quasistatic test in the specified direction. */

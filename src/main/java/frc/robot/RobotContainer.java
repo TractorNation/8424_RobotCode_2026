@@ -7,6 +7,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -211,11 +212,11 @@ public class RobotContainer {
     // region Autonomous Commands
     NamedCommands.registerCommand("shoot", Commands.parallel(ShooterCommands.updateShooterState(shooter, ShooterMode.MID), FeederCommands.runFeeder(feeder, 0.5)));
     NamedCommands.registerCommand("stopShooter", Commands.parallel(ShooterCommands.stopShooter(shooter), FeederCommands.stopFeeder(feeder)));
-    NamedCommands.registerCommand("intake", IntakeCommands.autonomousRunIntake(intake, 7.25, 5));
+    NamedCommands.registerCommand("intake", IntakeCommands.autonomousRunIntake(intake, 7.25, 1));
     NamedCommands.registerCommand("stopIntake", IntakeCommands.autonomousStopIntake(intake));
     NamedCommands.registerCommand("armOut", IntakeCommands.autonomousRunIntake(intake, 7.25, 0));
     NamedCommands.registerCommand("armIn", IntakeCommands.autonomousRunIntake(intake, 0, 0));
-    NamedCommands.registerCommand("runRoller", IntakeCommands.autonomousRunIntake(intake, 0, 5));
+    NamedCommands.registerCommand("runRoller", IntakeCommands.autonomousRunIntake(intake, 0, 1));
     NamedCommands.registerCommand("stopRoller", IntakeCommands.autonomousRunIntake(intake, 7.25, 0));
     // Set up auto routines
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", AutoBuilder.buildAutoChooser());
@@ -279,15 +280,15 @@ public class RobotContainer {
         drive.setDefaultCommand(
             DriveCommands.joystickDrive(
                 drive,
-                () -> mainTranslation.StickYAxis() * 1.0,
-                () -> mainTranslation.StickXAxis() * 1.0,
+                () -> mainTranslation.StickYAxis() * drive.joystickReverse * 1,
+                () -> mainTranslation.StickXAxis() * drive.joystickReverse * 1,
                 () -> mainRotation.StickXAxis() * -0.7,
                 1,
                 mainTranslation.fireStage1()
                     .or(mainTranslation.fireStage2())));
 
         mainTranslation.B1().onTrue(Commands.runOnce(robotState::zeroHeading));
-        //mainTranslation.D1().onTrue(Commands.runOnce(robotState::zeroHeading));
+        mainRotation.A2().onTrue(DriveCommands.reverseJoysticks(drive));
 
         mainTranslation.A2().whileTrue(Commands.run(() -> drive.stopWithX(), drive));
         break;
@@ -336,15 +337,17 @@ public class RobotContainer {
 
     // tractorController.button(9).onTrue(IntakeCommands.extendArm(intake, 8));
     // tractorController.button(10).onTrue(IntakeCommands.pullArm(intake));
-    tractorController.button(11).onTrue(IntakeCommands.runRoller(intake, 5)).onFalse(IntakeCommands.stopRoller(intake));
-    tractorController.button(10).onTrue(IntakeCommands.runRoller(intake, -5)).onFalse(IntakeCommands.stopRoller(intake));
+    tractorController.button(11).onTrue(IntakeCommands.runRoller(intake, -5)).onFalse(IntakeCommands.stopRoller(intake));
+    tractorController.button(10).onTrue(IntakeCommands.runRoller(intake, 5)).onFalse(IntakeCommands.stopRoller(intake));
 
     // tractorController.button(9).onTrue(IntakeCommands.incrementArm(intake, 0.25));
     // tractorController.button(10).onTrue(IntakeCommands.incrementArm(intake, -0.25));
 
     tractorController.button(1).onTrue(IntakeCommands.extendArm(intake, -0.1));
-    tractorController.button(2).onTrue(IntakeCommands.extendArm(intake, 7));
+    tractorController.button(2).onTrue(IntakeCommands.extendArm(intake, 7.25));
     tractorController.button(3).onTrue(IntakeCommands.extendArm(intake, 3));
+
+    tractorController.button(12).onTrue(Commands.parallel(IntakeCommands.stopRoller(intake), FeederCommands.stopFeeder(feeder), ShooterCommands.stopShooter(shooter)));
   }
 
   /**

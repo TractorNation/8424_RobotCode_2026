@@ -101,14 +101,13 @@ public class ModuleIOTalonFX implements ModuleIO {
       default:
         throw new RuntimeException("Invalid module index");
     }
-    final double DRIVE_GEAR_RATIO = DriveConstants.DRIVE_GEAR_RATIO;
 
     var driveConfig = new TalonFXConfiguration();
 
     // Configure drive motor to use integrated encoder for velocity feedback
     driveConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.RotorSensor;
     driveConfig.Feedback.RotorToSensorRatio = 1.0;
-    driveConfig.Feedback.SensorToMechanismRatio = DRIVE_GEAR_RATIO;
+    driveConfig.Feedback.SensorToMechanismRatio = DriveConstants.DRIVE_GEAR_RATIO;
     driveConfig.Slot0.kP = DriveConstants.KP_DRIVE;
     driveConfig.Slot0.kV = DriveConstants.KV_DRIVE;
     driveConfig.Slot0.kS = DriveConstants.KS_DRIVE;

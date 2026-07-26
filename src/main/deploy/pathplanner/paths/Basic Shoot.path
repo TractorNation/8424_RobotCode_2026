@@ -24,7 +24,7 @@
         "y": 3.9653134155392644
       },
       "nextControl": {
-        "x": 1.5836122696230066,
+        "x": 1.5836122696230064,
         "y": 3.973554054340254
       },
       "isLocked": false,
@@ -49,68 +49,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "shoot",
-      "waypointRelativePos": 1.0,
+      "name": "armOut",
+      "waypointRelativePos": 0.5,
       "endWaypointRelativePos": null,
       "command": {
-        "type": "sequential",
+        "type": "named",
         "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "armOut"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "shoot"
-              }
-            },
-            {
-              "type": "wait",
-              "data": {
-                "waitTime": 2.5
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "armIn"
-              }
-            },
-            {
-              "type": "wait",
-              "data": {
-                "waitTime": 1.25
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "armOut"
-              }
-            },
-            {
-              "type": "wait",
-              "data": {
-                "waitTime": 1.25
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "stopShooter"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "stopIntake"
-              }
-            }
-          ]
+          "name": "armOut"
         }
       }
     }

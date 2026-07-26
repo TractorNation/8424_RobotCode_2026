@@ -263,7 +263,7 @@ public class DriveCommands {
                   double kS = (sumY * sumX2 - sumX * sumXY) / (n * sumX2 - sumX * sumX);
                   double kV = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
 
-                  NumberFormat formatter = new DecimalFormat("#0.00000");
+                 NumberFormat formatter = new DecimalFormat("#0.00000");
                   System.out.println("********** Drive FF Characterization Results **********");
                   System.out.println("\tkS: " + formatter.format(kS));
                   System.out.println("\tkV: " + formatter.format(kV));
@@ -360,5 +360,9 @@ public class DriveCommands {
     double gyroDelta = 0.0;
     double wheelRadius = 0.0;
     double wheelDelta = 0.0;
+  }
+  
+  public static Command reverseJoysticks(DriveSubsystem drive) {
+    return Commands.runOnce(() -> drive.toggleJoystickReverse(), drive);
   }
 }

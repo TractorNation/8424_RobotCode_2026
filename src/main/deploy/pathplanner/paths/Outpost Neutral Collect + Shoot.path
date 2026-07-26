@@ -73,7 +73,7 @@
       },
       "nextControl": {
         "x": 5.73226777716771,
-        "y": 0.2519851216207828
+        "y": 0.251985121620783
       },
       "isLocked": false,
       "linkedName": null
@@ -96,12 +96,12 @@
     },
     {
       "anchor": {
-        "x": 1.7116923076923087,
-        "y": 1.8023846153846161
+        "x": 1.7176512455516018,
+        "y": 2.0391696322657173
       },
       "prevControl": {
-        "x": 1.7387237304115764,
-        "y": 1.5538503075199426
+        "x": 1.7446826682708694,
+        "y": 1.7906353244010438
       },
       "nextControl": null,
       "isLocked": false,
@@ -189,17 +189,6 @@
           "name": "intake"
         }
       }
-    },
-    {
-      "name": "shoot",
-      "waypointRelativePos": 6.0,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "shoot"
-        }
-      }
     }
   ],
   "globalConstraints": {
@@ -212,7 +201,7 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 45.0
+    "rotation": 40.0
   },
   "reversed": false,
   "folder": null,

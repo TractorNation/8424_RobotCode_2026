@@ -23,9 +23,9 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private TalonFX shooterMotorA;
   private TalonFX shooterMotorB;
-  private TalonFXS kickerMotor;
+  //private TalonFXS kickerMotor;
   private TalonFXConfiguration shooterMotorConfig;
-  private TalonFXSConfiguration kickerMotorConfig;
+  //private TalonFXSConfiguration kickerMotorConfig;
 
   public enum ShooterMode {
     LOW, MID, HIGH
@@ -36,10 +36,10 @@ public class ShooterSubsystem extends SubsystemBase {
     // Construct your motors
     shooterMotorA = new TalonFX(13);
     shooterMotorB = new TalonFX(14);
-    kickerMotor = new TalonFXS(15);
+   // kickerMotor = new TalonFXS(15);
 
     shooterMotorConfig = new TalonFXConfiguration();
-    kickerMotorConfig = new TalonFXSConfiguration();
+    //kickerMotorConfig = new TalonFXSConfiguration();
 
     // Setup the configs
     shooterMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -50,23 +50,23 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     shooterMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
 
-    kickerMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
-    kickerMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    kickerMotorConfig.Slot0.kP = 1.0;
-    kickerMotorConfig.Slot0.kI = 0.0;
-    kickerMotorConfig.Slot0.kD = 0.0;
-    kickerMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-    kickerMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-    kickerMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
+    //kickerMotorConfig.Commutation.MotorArrangement = MotorArrangementValue.Minion_JST;
+    //kickerMotorConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    //kickerMotorConfig.Slot0.kP = 1.0;
+    //kickerMotorConfig.Slot0.kI = 0.0;
+    //kickerMotorConfig.Slot0.kD = 0.0;
+    //kickerMotorConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    //kickerMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+    //kickerMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
 
 
     // Apply the configs
     shooterMotorA.getConfigurator().apply(shooterMotorConfig);
     shooterMotorB.getConfigurator().apply(shooterMotorConfig);
-    kickerMotor.getConfigurator().apply(kickerMotorConfig);
+    //kickerMotor.getConfigurator().apply(kickerMotorConfig);
 
     shooterMotorB.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
-    kickerMotor.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
+    //kickerMotor.setControl(new Follower(shooterMotorA.getDeviceID(), MotorAlignmentValue.Opposed));
   }
 
   /**
@@ -84,6 +84,6 @@ public class ShooterSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("ShooterSpeedRPS", shooterMotorA.getVelocity().getValueAsDouble());
+   // SmartDashboard.putNumber("ShooterSpeedRPS", shooterMotorA.getVelocity().getValueAsDouble());
   }
 }
